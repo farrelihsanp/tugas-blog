@@ -14,15 +14,15 @@ export default function SearchPage() {
 
   useEffect(() => {
     async function getSearchResult() {
-      const data = (await getEntries({
-        content_type: "blogPost",
-        keyword: keyword!,
-      })) as unknown as ContentfulPost[];
-      setResults(data ?? []);
+      if (keyword) {
+        const data = (await getEntries({
+          content_type: "blogPost",
+          keyword: keyword!,
+        })) as unknown as ContentfulPost[];
+        setResults(data ?? []);
+      }
     }
-    if (keyword) {
-      getSearchResult();
-    }
+    getSearchResult();
   }, [keyword]);
 
   return (
