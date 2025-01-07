@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContentfulPost } from "../types/contentful";
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword");
   const [results, setResults] = useState<ContentfulPost[]>([]);
@@ -26,53 +26,59 @@ export default function SearchPage() {
   }, [keyword]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <section className="flex flex-col min-h-screen">
-        <div className="max-w-7xl mx-auto p-4 flex-1">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {results?.map((post, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-md border border-gray-200 rounded-lg mb-5 flex flex-col transition-all duration-300 hover:scale-105"
-              >
+    <section className="flex flex-col min-h-screen">
+      <div className="max-w-7xl mx-auto p-4 flex-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {results?.map((post, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-md border border-gray-200 rounded-lg mb-5 flex flex-col transition-all duration-300 hover:scale-105"
+            >
+              <Link href={`/blog/${post.fields.slug}`}>
+                <div className="relative h-48 w-full">
+                  <Image
+                    className="rounded-t-lg object-cover"
+                    src={`https:${post.fields.projectImages?.[0]?.fields?.file?.url}`}
+                    alt="Featured Image"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (min-width: 640px) 50vw, 33vw"
+                  />
+                </div>
+              </Link>
+              <div className="p-5 flex-1">
                 <Link href={`/blog/${post.fields.slug}`}>
-                  <div className="relative h-48 w-full">
-                    <Image
-                      className="rounded-t-lg object-cover"
-                      src={`https:${post.fields.projectImages?.[0]?.fields?.file?.url}`}
-                      alt="Featured Image"
-                      fill
-                      sizes="(max-width: 640px) 100vw, (min-width: 640px) 50vw, 33vw"
-                    />
-                  </div>
+                  <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
+                    {post.fields.title}
+                  </h5>
                 </Link>
-                <div className="p-5 flex-1">
-                  <Link href={`/blog/${post.fields.slug}`}>
-                    <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2">
-                      {post.fields.title}
-                    </h5>
-                  </Link>
-                  <p className="font-normal text-gray-700 mb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
+                <p className="font-normal text-gray-700 mb-3">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
 
-                  <p className="text-sm text-gray-500 mb-3">
-                    Category: {post.fields.categories?.fields?.name}
-                  </p>
-                </div>
-                <div className="flex m-5">
-                  <Link
-                    href={`/blog/${post.fields.slug}`}
-                    className="text-white bg-black hover:bg-gray-500 font-medium rounded text-xs px-3 py-1"
-                  >
-                    Read more
-                  </Link>
-                </div>
+                <p className="text-sm text-gray-500 mb-3">
+                  Category: {post.fields.categories?.fields?.name}
+                </p>
               </div>
-            ))}
-          </div>
+              <div className="flex m-5">
+                <Link
+                  href={`/blog/${post.fields.slug}`}
+                  className="text-white bg-black hover:bg-gray-500 font-medium rounded text-xs px-3 py-1"
+                >
+                  Read more
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
     </Suspense>
   );
 }
