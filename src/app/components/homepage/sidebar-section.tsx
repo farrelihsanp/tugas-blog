@@ -16,7 +16,7 @@ export default async function SidebarPage() {
     <section>
       {categories.map((category, index) => (
         <Link key={index} href={`/categories/${category.fields.slug}`}>
-          <div className="bg-white rounded-lg shadow-md relative overflow-hidden h-12 m-3 flex items-center justify-center transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-lg shadow-md relative lg:overflow-hidden h-12 m-3 flex items-center justify-center transition-all duration-300 hover:scale-105">
             <Image
               src={`https:${category.fields.image.fields.file.url}`}
               alt={category.fields.name}

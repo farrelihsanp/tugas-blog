@@ -3,7 +3,7 @@ import SearchBar from "./search-bar";
 
 export default function Header() {
   return (
-    <header className="flex flex-col sm:flex-row max-w-[1100px] mx-auto items-center justify-between gap-3 px-5 py-8 text-sm">
+    <header className="text-center flex flex-col sm:flex-row max-w-[1100px] mx-auto items-center justify-between gap-3 px-5 py-8 text-sm">
       <div className="flex items-baseline gap-1">
         <div className="text-3xl font-raleway font-semibold text-white bg-black p-2 lg:text-4xl">
           <Link href="/">Architecture Blog</Link>

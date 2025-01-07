@@ -6,11 +6,11 @@ import SidebarPage from "./components/homepage/sidebar-section";
 export default async function HomePage() {
   return (
     <div className="flex flex-col items-center">
-      <div className="max-w-7xl flex flex-col md:flex-row w-full">
-        <div className="md:w-5/6 w-full">
+      <div className="max-w-7xl flex flex-col lg:flex-row w-full">
+        <div className="lg:w-5/6 w-full">
           <HeroSection />
         </div>
-        <div className="md:w-1/6 w-full">
+        <div className="lg:w-1/6 w-full">
           <SidebarPage />
         </div>
       </div>
