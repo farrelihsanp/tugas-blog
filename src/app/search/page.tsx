@@ -53,6 +53,7 @@ function SearchContent() {
                 </Link>
                 <p className="font-normal text-gray-700 mb-3">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  lorem
                 </p>
 
                 <p className="text-sm text-gray-500 mb-3">
