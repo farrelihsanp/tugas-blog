@@ -8,6 +8,8 @@ export default async function BlogPage() {
     content_type: "blogPost",
   })) as unknown as ContentfulPost[];
 
+  console.log(posts);
+
   return (
     <section className="max-w-7xl mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -37,10 +39,11 @@ export default async function BlogPage() {
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               </p>
 
-              <p className="text-sm text-gray-500 mb-3">Category: lorem</p>
+              <p className="text-sm text-gray-500 mb-3">
+                Category: {post.fields.categories.fields.name}
+              </p>
             </div>
             <div className="flex m-5">
-              {" "}
               <Link
                 href={`/blog/${post.fields.slug}`}
                 className="text-white bg-black hover:bg-gray-500 font-medium rounded text-xs px-3 py-1"
